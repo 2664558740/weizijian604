@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  作者：魏子健
+  建立时间：2026-11-04 14:20
+  使用大模型：DeepSeek（DSH 桌面端 AI 助手）
+  功能名称：新闻排行榜选项卡 —— 四个选项卡（国内新闻 / 省内新闻 / 国际新闻 / 最热新闻）切换展示新闻榜单，国内新闻为默认选项
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻排行榜 - 魏子健</title>
+  <!-- 外部样式：样式全部写在 css/style.css，符合结构/样式/行为分离 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- wzz_rankBox：排行榜外框，1:1 还原参考图（sina.png） -->
+  <div class="wzz_rankBox" data-wzz-tabs>
+
+    <!-- 头部：左侧标题 + 右侧选项卡 -->
+    <div class="wzz_rankHeader">
+      <h2 class="wzz_rankTitle">排行榜</h2>
+
+      <!-- wzz_tabList：选项卡容器，data-wzz-tab 标记索引 -->
+      <div class="wzz_tabList" id="wzz_tabList">
+        <a href="javascript:;" class="wzz_tab wzz_active" data-wzz-tab="0">国内新闻</a>
+        <a href="javascript:;" class="wzz_tab" data-wzz-tab="1">省内新闻</a>
+        <a href="javascript:;" class="wzz_tab" data-wzz-tab="2">国际新闻</a>
+        <a href="javascript:;" class="wzz_tab" data-wzz-tab="3">最热新闻</a>
+      </div>
+    </div>
+
+    <!-- 内容区：四个面板，默认显示第 1 个（国内新闻） -->
+    <div class="wzz_panelList">
+
+      <!-- 国内新闻（默认选中） -->
+      <ul class="wzz_panel wzz_active" data-wzz-panel="0">
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">1</span><a href="javascript:;" class="wzz_newsLink">构建“股市+债市”稳市机制！央行新工具来了</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">2</span><a href="javascript:;" class="wzz_newsLink">美媒：美军已准备好再打击伊朗 特朗普或中期选举</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">3</span><a href="javascript:;" class="wzz_newsLink">姆巴佩发表涉中国不当言论，多家品牌终止合作</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">4</span><a href="javascript:;" class="wzz_newsLink">东鹏饮料集团：零容忍伤害民族感情行为，终止合作</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">5</span><a href="javascript:;" class="wzz_newsLink">300672，业绩暴增超5600%！10股业绩大增（附股）</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">6</span><a href="javascript:;" class="wzz_newsLink">史上最大IPO要来了！7位创始人身家均超130亿美元</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">7</span><a href="javascript:;" class="wzz_newsLink">外交部：对英国警方任意、过度执法行为表示强烈不满</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">8</span><a href="javascript:;" class="wzz_newsLink">1000000美元！特朗普重金悬赏</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">9</span><a href="javascript:;" class="wzz_newsLink">张一鸣以6700亿元刷新中国首富财富纪录！</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">10</span><a href="javascript:;" class="wzz_newsLink">Gucci卖不动了 开云今年将关掉至少125家门店</a></li>
+      </ul>
+
+      <!-- 省内新闻 -->
+      <ul class="wzz_panel" data-wzz-panel="1">
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">1</span><a href="javascript:;" class="wzz_newsLink">辽宁大连：东北亚航运中心吞吐量再创新高</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">2</span><a href="javascript:;" class="wzz_newsLink">沈阳地铁多条线路年底前开通，覆盖浑南主城</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">3</span><a href="javascript:;" class="wzz_newsLink">省教育厅：中小学课后服务实现城乡全覆盖</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">4</span><a href="javascript:;" class="wzz_newsLink">辽宁自贸区新增注册企业同比增长两成</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">5</span><a href="javascript:;" class="wzz_newsLink">大连港开通至东南亚新航线，物流时效缩短四天</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">6</span><a href="javascript:;" class="wzz_newsLink">省内多地迎来首场降雪，高速启动应急保通</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">7</span><a href="javascript:;" class="wzz_newsLink">省属高校新增三个国家级一流本科专业</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">8</span><a href="javascript:;" class="wzz_newsLink">秋粮收购进度过半，粮价总体平稳</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">9</span><a href="javascript:;" class="wzz_newsLink">全省文旅消费季启动，百家景区门票半价</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">10</span><a href="javascript:;" class="wzz_newsLink">省内首条智慧高速完成全路段感知设备部署</a></li>
+      </ul>
+
+      <!-- 国际新闻 -->
+      <ul class="wzz_panel" data-wzz-panel="2">
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">1</span><a href="javascript:;" class="wzz_newsLink">联合国气候大会达成阶段性融资共识</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">2</span><a href="javascript:;" class="wzz_newsLink">美联储维持利率不变，市场预期年内或降息</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">3</span><a href="javascript:;" class="wzz_newsLink">欧盟通过新一轮人工智能监管实施细则</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">4</span><a href="javascript:;" class="wzz_newsLink">日本央行上调通胀预期，日元汇率短线走高</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">5</span><a href="javascript:;" class="wzz_newsLink">中东多国启动跨境铁路互联项目可行性研究</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">6</span><a href="javascript:;" class="wzz_newsLink">全球半导体设备出货额连续三季度回升</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">7</span><a href="javascript:;" class="wzz_newsLink">世卫组织：全球流感疫苗接种率仍需提升</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">8</span><a href="javascript:;" class="wzz_newsLink">欧洲多国遭遇强风暴，航班大面积延误</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">9</span><a href="javascript:;" class="wzz_newsLink">拉美地区跨境电商交易额同比增长逾三成</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">10</span><a href="javascript:;" class="wzz_newsLink">国际油价小幅回落，市场关注供给端变化</a></li>
+      </ul>
+
+      <!-- 最热新闻 -->
+      <ul class="wzz_panel" data-wzz-panel="3">
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">1</span><a href="javascript:;" class="wzz_newsLink">国产大模型开源生态再迎突破，下载量创新高</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">2</span><a href="javascript:;" class="wzz_newsLink">多地推出“以旧换新”补贴，家电销量明显回升</a></li>
+        <li class="wzz_newsItem wzz_top"><span class="wzz_num">3</span><a href="javascript:;" class="wzz_newsLink">年轻人“反向旅游”走红，小众县城酒店预订翻倍</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">4</span><a href="javascript:;" class="wzz_newsLink">新能源车渗透率突破五成，充电桩建设提速</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">5</span><a href="javascript:;" class="wzz_newsLink">预制菜新规落地，餐饮企业加速调整供应链</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">6</span><a href="javascript:;" class="wzz_newsLink">短视频平台上线“青少年模式”统一入口</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">7</span><a href="javascript:;" class="wzz_newsLink">考研报名人数连续两年下降，专硕比例上升</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">8</span><a href="javascript:;" class="wzz_newsLink">跨境电商“小单快反”模式成出口新增长点</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">9</span><a href="javascript:;" class="wzz_newsLink">城市夜经济回暖，夜间消费订单同比增长</a></li>
+        <li class="wzz_newsItem"><span class="wzz_num">10</span><a href="javascript:;" class="wzz_newsLink">AI 手机出货量占比提升，成换机主要驱动力</a></li>
+      </ul>
+
+    </div>
+
+    <!-- 底部装饰条：1:1 还原参考图底部的浅灰横条 -->
+    <div class="wzz_bottomBar"></div>
+  </div>
+
+  <!-- 外部脚本：选项卡逻辑，可复用 -->
+  <script src="js/tab.js"></script>
+</body>
+</html>

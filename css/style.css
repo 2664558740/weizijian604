@@ -1,0 +1,156 @@
+/* ============================================================
+   作者：魏子健
+   建立时间：2026-11-04 14:20
+   使用大模型：DeepSeek（DSH 桌面端 AI 助手）
+   功能名称：新闻排行榜选项卡样式（1:1 还原参考图 sina.png）
+   说明：所有类名统一以 wzz_ 开头，选中态统一使用 .wzz_active
+   ============================================================ */
+
+/* 基础重置：只影响本项目元素，避免污染全局 */
+.wzz_rankBox,
+.wzz_rankBox * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 外框：参考图为 578px 宽、白底、浅灰描边 */
+.wzz_rankBox {
+  width: 578px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  color: #333;
+}
+
+/* 头部：左右布局，底部分隔线 */
+.wzz_rankHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 0 0 24px;
+  border-bottom: 1px solid #e6e6e6;
+  height: 58px;
+}
+
+/* 标题「排行榜」 */
+.wzz_rankTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: #3b3b3b;
+  line-height: 58px;
+  letter-spacing: 1px;
+}
+
+/* 选项卡容器：贴右侧、底部对齐 */
+.wzz_tabList {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+}
+
+/* 单个选项卡：参考图为带边框的小方块，未选中浅色，选中白底 + 顶部深色线 */
+.wzz_tab {
+  display: block;
+  min-width: 54px;
+  height: 36px;
+  line-height: 34px;
+  padding: 0 12px;
+  text-align: center;
+  font-size: 17px;
+  color: #333;
+  text-decoration: none;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+  border-top: 2px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* 相邻选项卡共享边框，避免双线 */
+.wzz_tab + .wzz_tab {
+  border-left: none;
+}
+
+/* 未选中 hover */
+.wzz_tab:hover {
+  color: #c00;
+}
+
+/* 选中态：统一用 wzz_active 控制 */
+.wzz_tab.wzz_active {
+  background: #fff;
+  border-top-color: #333;
+  color: #222;
+  font-weight: 700;
+}
+
+/* 内容区 */
+.wzz_panelList {
+  padding: 10px 24px 6px;
+}
+
+/* 面板默认隐藏，选中态才显示 */
+.wzz_panel {
+  display: none;
+  list-style: none;
+}
+
+.wzz_panel.wzz_active {
+  display: block;
+}
+
+/* 单条新闻行：高度 38px，与参考图一致 */
+.wzz_newsItem {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  line-height: 38px;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+/* 序号方块：20×20，默认灰色（4~10 名） */
+.wzz_num {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: #b8b8b8;
+  border-radius: 2px;
+}
+
+/* 前三名：红色方块 */
+.wzz_newsItem.wzz_top .wzz_num {
+  background: #e03131;
+}
+
+/* 新闻标题链接 */
+.wzz_newsLink {
+  color: #333;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wzz_newsLink:hover {
+  color: #c00;
+  text-decoration: underline;
+}
+
+/* 底部浅灰装饰条 */
+.wzz_bottomBar {
+  height: 10px;
+  margin: 0 24px 14px;
+  background: #f2f2f2;
+  border: 1px solid #e8e8e8;
+}
