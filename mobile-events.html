@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  作者：魏子健
+  建立时间：2026-11-18 14:50
+  使用大模型：DeepSeek（DSH 桌面端 AI 助手）
+  功能名称：移动端触摸事件 · 四关任务合辑（事件侦探 / 手势卡片 / 图片查看器 / 摇一摇抽菜谱）
+  说明：全部基于原生 touch / devicemotion，请用手机或浏览器设备模式体验
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>移动端触摸事件 · 四关任务 | 魏子健</title>
+  <link rel="stylesheet" href="css/mobile-events.css">
+</head>
+<body>
+
+<a class="wzz_back" href="index.html">← 返回首页</a>
+
+<div class="wzz_head">
+  <h1>移动端触摸事件 · 四关任务</h1>
+  <p>魏子健 · 24002120604 · 电商24006<br>按下、滑动、缩放、摇一摇——四个任务装在一个页面里</p>
+</div>
+
+<!-- 四个任务切换标签 -->
+<div class="wzz_tabs">
+  <button class="wzz_tab wzz_on" data-wzz-target="wzz_panel1">任务一 · 事件侦探</button>
+  <button class="wzz_tab" data-wzz-target="wzz_panel2">任务二 · 手势卡片</button>
+  <button class="wzz_tab" data-wzz-target="wzz_panel3">任务三 · 图片查看器</button>
+  <button class="wzz_tab" data-wzz-target="wzz_panel4">任务四 · 摇一摇</button>
+</div>
+
+<!-- 任务一：事件侦探 -->
+<section class="wzz_panel wzz_on" id="wzz_panel1">
+  <h2>任务一 · 事件侦探</h2>
+  <p class="wzz_desc">在下方黑色区域依次做：单击 / 向上拖动 / 向左快速滑 / 长按后抬起，观察事件触发顺序。</p>
+
+  <div class="wzz_probe" id="wzz_probe">
+    用手指在这里<br>按下 · 拖动 · 抬起
+  </div>
+
+  <div class="wzz_statbar">
+    <div class="wzz_stat">touchstart<b id="wzz_c_start">0</b></div>
+    <div class="wzz_stat">touchmove<b id="wzz_c_move">0</b></div>
+    <div class="wzz_stat">touchend<b id="wzz_c_end">0</b></div>
+    <div class="wzz_stat">touchcancel<b id="wzz_c_cancel">0</b></div>
+    <div class="wzz_stat">click<b id="wzz_c_click">0</b></div>
+  </div>
+
+  <div class="wzz_log" id="wzz_log">等待你的第一次触摸……</div>
+  <button class="wzz_btn wzz_gray" id="wzz_clearLog" type="button">清空日志</button>
+
+  <div class="wzz_qa">
+    <div class="wzz_qa-title">观察要点</div>
+    <ul>
+      <li>一次拖动里 <b>touchmove</b> 会触发很多次，移动距离越大次数越多</li>
+      <li><b>click</b> 出现在 <b>touchend 之后</b>，不是之前</li>
+      <li>来电或通知打断时触发的是 <b>touchcancel</b>，而不是 touchend</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 任务二：手势卡片 -->
+<section class="wzz_panel" id="wzz_panel2">
+  <h2>任务二 · 手势卡片</h2>
+  <p class="wzz_desc">四道中华美食，在卡片上左右滑动切换；电脑可按住鼠标拖动，也能点下方圆点。</p>
+
+  <div class="wzz_swipeBox" id="wzz_swipeBox">
+    <div class="wzz_foodCard" id="wzz_foodCard">
+      <h3 id="wzz_foodName">重庆火锅</h3>
+      <p id="wzz_foodDesc">牛油红汤翻滚，毛肚七上八下</p>
+    </div>
+    <div class="wzz_foodFoot">
+      <span id="wzz_foodCount">第 1 / 4 张</span>
+      <span class="wzz_tip" id="wzz_swipeTip"></span>
+    </div>
+    <div class="wzz_dots" id="wzz_dots"></div>
+  </div>
+
+  <div class="wzz_qa">
+    <div class="wzz_qa-title">验收要点</div>
+    <ul>
+      <li>位移小于 <b>40px</b> 判为误触，不切换卡片</li>
+      <li>连续快速滑动不会一次跳两张（<b>300ms 冷却</b>）</li>
+      <li>容器用 <b>touch-action: pan-y</b>，纵向仍可滚动页面</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 任务三：图片查看器 -->
+<section class="wzz_panel" id="wzz_panel3">
+  <h2>任务三 · 图片查看器</h2>
+  <p class="wzz_desc">双指缩放 1~4 倍 · 双击在 1x/2x 之间切换 · 放大后可单指拖动查看细节。</p>
+
+  <div class="wzz_viewer" id="wzz_viewer">
+    <div class="wzz_zoomImg" id="wzz_zoomImg">
+      <span class="wzz_zoomText">双指缩放 · 双击放大</span>
+    </div>
+  </div>
+
+  <p class="wzz_scaleBar">当前缩放：<b id="wzz_scaleText">1.00</b> 倍</p>
+
+  <div class="wzz_qa">
+    <div class="wzz_qa-title">验收要点</div>
+    <ul>
+      <li>缩放以<b>两指中点</b>为基准，图片不会“跳走”</li>
+      <li>缩放到 <b>1x 自动回到居中</b>，不会留下偏移</li>
+      <li>放大后拖动<b>不越界</b>，边缘有边界限制</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 任务四：摇一摇 -->
+<section class="wzz_panel" id="wzz_panel4">
+  <h2>任务四 · 摇一摇抽菜谱</h2>
+  <p class="wzz_desc">摇一摇手机，随机抽一道今日菜谱；没有传感器时用按钮降级。</p>
+
+  <div class="wzz_sensorBox">
+    <div id="wzz_sensorState">摇一摇手机，抽今日菜谱</div>
+    <div class="wzz_dish" id="wzz_dish">—</div>
+    <div class="wzz_magLine">合成加速度：<b id="wzz_mag">0.0</b>（阈值 18）</div>
+    <button class="wzz_btn" id="wzz_permBtn" type="button">iOS 请先点这里授权</button>
+    <button class="wzz_btn wzz_gray" id="wzz_pickBtn" type="button">点我抽一次（降级方案）</button>
+  </div>
+
+  <div class="wzz_qa">
+    <div class="wzz_qa-title">验收要点</div>
+    <ul>
+      <li>一次摇动只触发一次（<b>1.5s 冷却</b>）</li>
+      <li>无加速度传感器时提示“<b>当前设备不支持</b>”，不报错、不白屏</li>
+      <li>iOS 13+ 需用户点击后调用 <b>DeviceMotionEvent.requestPermission()</b></li>
+    </ul>
+  </div>
+</section>
+
+<script src="js/mobile-events.js"></script>
+</body>
+</html>
