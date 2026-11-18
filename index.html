@@ -2,81 +2,74 @@
 <!--
   ============================================================
   作者：魏子健
-  建立时间：2026-11-18 14:20
+  建立时间：2026-11-18 14:35
   使用大模型：DeepSeek（DSH 桌面端 AI 助手）
-  功能名称：作品导航页 —— 汇总课程实践中完成的页面（新闻排行榜选项卡、移动端手势卡片）
+  功能名称：作品导航首页 —— 移动端设备事件实践：摇一摇抽今日菜谱
   ============================================================
 -->
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>魏子健 · 网页作品集</title>
+  <title>魏子健 · 摇一摇抽菜谱</title>
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       margin: 0;
       padding: 40px 20px 60px;
       font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
-      background: linear-gradient(160deg, #f6f8ff 0%, #eef4ff 50%, #fdf6ee 100%);
+      background: linear-gradient(160deg, #fff7ed 0%, #fef2f2 55%, #f5f3ff 100%);
       min-height: 100vh;
       color: #1f2937;
     }
-    .wzz_wrap { max-width: 880px; margin: 0 auto; }
-    header { text-align: center; margin-bottom: 36px; }
+    .wzz_wrap { max-width: 720px; margin: 0 auto; text-align: center; }
     header .wzz_badge {
       display: inline-block; padding: 6px 16px; border-radius: 999px;
-      background: #fff; border: 1px solid #dbe4ff; color: #4f6ef7;
+      background: #fff; border: 1px solid #fde3c8; color: #ea580c;
       font-size: 13px; letter-spacing: 2px; margin-bottom: 14px;
     }
     header h1 { font-size: 30px; margin: 0 0 10px; }
-    header p { margin: 0; color: #6b7280; font-size: 14px; }
-    .wzz_grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    header p { margin: 0 0 30px; color: #6b7280; font-size: 14px; }
+
     a.wzz_card {
-      display: block; text-decoration: none; background: #fff; border-radius: 16px;
-      padding: 22px; border: 1px solid #e8ecf5; position: relative; overflow: hidden;
-      transition: transform .2s ease, box-shadow .2s ease; color: inherit;
+      display: block; text-decoration: none; background: #fff; border-radius: 20px;
+      padding: 30px 24px; border: 1px solid #f1e3d3; color: inherit;
+      box-shadow: 0 12px 30px rgba(220, 120, 40, 0.12);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    a.wzz_card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--ac, #4f6ef7); }
-    a.wzz_card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(31,41,55,.12); }
-    .wzz_emo { font-size: 30px; }
-    .wzz_card h2 { font-size: 18px; margin: 10px 0 8px; }
-    .wzz_card p { font-size: 13.5px; color: #6b7280; line-height: 1.8; margin: 0 0 12px; min-height: 48px; }
-    .wzz_tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-    .wzz_tags i { font-style: normal; font-size: 11.5px; color: #4b5563; background: #f3f4f6; padding: 3px 9px; border-radius: 6px; }
-    .wzz_go { font-size: 13.5px; font-weight: bold; color: var(--ac, #4f6ef7); }
-    footer { text-align: center; color: #9ca3af; font-size: 12.5px; line-height: 2; margin-top: 34px; }
+    a.wzz_card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(220, 120, 40, 0.18); }
+    .wzz_emo { font-size: 56px; display: block; margin-bottom: 12px; }
+    .wzz_card h2 { font-size: 22px; margin: 0 0 10px; color: #b45309; }
+    .wzz_card p { font-size: 14px; line-height: 1.85; color: #6b7280; margin: 0 0 16px; }
+    .wzz_tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
+    .wzz_tags i { font-style: normal; font-size: 11.5px; color: #9a3412; background: #fff3e6; padding: 4px 10px; border-radius: 6px; }
+    .wzz_go { font-size: 15px; font-weight: bold; color: #ea580c; }
+    footer { margin-top: 30px; color: #9ca3af; font-size: 12.5px; line-height: 2; }
   </style>
 </head>
 <body>
   <div class="wzz_wrap">
     <header>
-      <span class="wzz_badge">高 级 网 页 设 计</span>
-      <h1>魏子健 · 网页作品集</h1>
-      <p>学号 24002120604 · 电商24006 · 2026-2027-1</p>
+      <span class="wzz_badge">移 动 端 · 设 备 事 件</span>
+      <h1>摇一摇抽今日菜谱</h1>
+      <p>魏子健 · 学号 24002120604 · 电商24006</p>
     </header>
 
-    <div class="wzz_grid">
-      <a class="wzz_card" href="news-tab.html" style="--ac:#0ea5e9">
-        <span class="wzz_emo">📰</span>
-        <h2>新闻排行榜选项卡</h2>
-        <p>1:1 还原参考图，四个选项卡（国内/省内/国际/最热），国内新闻默认选中；JS 外部引用、可复用，切换时先清除全部选中态再设置当前。</p>
-        <div class="wzz_tags"><i>HTML</i><i>CSS</i><i>原生 JS</i><i>选项卡</i></div>
-        <div class="wzz_go">进入页面 →</div>
-      </a>
-
-      <a class="wzz_card" href="mobile-gesture.html" style="--ac:#7c3aed">
-        <span class="wzz_emo">🍲</span>
-        <h2>移动端手势卡片</h2>
-        <p>四道中华美食，左右滑动切换；阈值 40px 防误触、边界红色提示、0.3s 过渡、300ms 冷却防连滑跳张，touch-action 只接管横向。</p>
-        <div class="wzz_tags"><i>触摸事件</i><i>手势识别</i><i>移动端</i><i>touch-action</i></div>
-        <div class="wzz_go">进入页面 →</div>
-      </a>
-    </div>
+    <a class="wzz_card" href="mobile-sensor.html">
+      <span class="wzz_emo">📳</span>
+      <h2>摇一摇抽菜谱</h2>
+      <p>
+        监听 devicemotion，用 accelerationIncludingGravity 计算合成加速度，
+        超过阈值 18 判定为摇动，触发后进入 1.5 秒冷却防止一次摇动重复触发。
+        没有传感器的设备自动降级为按钮抽取，并给出友好提示。
+      </p>
+      <div class="wzz_tags"><i>devicemotion</i><i>合成加速度</i><i>阈值 18</i><i>1.5s 冷却</i><i>降级方案</i></div>
+      <div class="wzz_go">进入页面 →</div>
+    </a>
 
     <footer>
-      作者：魏子健 · 所有类名/ID/JS 变量统一 <code>wzz_</code> 前缀<br>
-      GitHub Pages 部署
+      作者：魏子健 · 变量统一 wzz_ 前缀<br>
+      建议用手机打开体验摇一摇
     </footer>
   </div>
 </body>

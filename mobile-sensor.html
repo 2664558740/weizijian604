@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  作者：魏子健
+  建立时间：2026-11-18 14:35
+  使用大模型：DeepSeek（DSH 桌面端 AI 助手）
+  功能名称：摇一摇抽今日菜谱 —— 监听 devicemotion 计算合成加速度，阈值 18 触发，1.5 秒冷却，不支持时降级为点按抽取
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摇一摇抽菜谱 - 魏子健</title>
+  <link rel="stylesheet" href="css/mobile-sensor.css">
+</head>
+<body>
+
+  <div class="wzz_wrap">
+    <h1 class="wzz_title">今天吃什么</h1>
+    <p class="wzz_sub" id="wzz_hint">摇一摇手机，抽今日菜谱</p>
+
+    <!-- 结果展示区 -->
+    <div class="wzz_resultBox" id="wzz_resultBox">
+      <span class="wzz_emoji" id="wzz_emoji">🍽️</span>
+      <h2 class="wzz_dish" id="wzz_dish">准备好了吗？</h2>
+      <p class="wzz_desc" id="wzz_desc">用力摇一摇手机，或者点下面的按钮</p>
+    </div>
+
+    <!-- 状态提示：权限 / 不支持 / 冷却 -->
+    <p class="wzz_status" id="wzz_status"></p>
+
+    <!-- 降级按钮：没有传感器、没授权时用它 -->
+    <button class="wzz_btn" id="wzz_btn" type="button">点我抽一次</button>
+
+    <!-- 说明：为什么必须做降级 -->
+    <div class="wzz_note">
+      <b>为什么必须做降级？</b><br>
+      传感器事件只在真机上才有数据：电脑浏览器、部分模拟器、没授权或没陀螺仪的设备都收不到
+      <code>devicemotion</code>。如果只写摇一摇，这些设备打开就是一片空白。
+      所以这里做了两层兜底——① 3 秒内没收到任何传感器数据就提示"当前设备不支持"；
+      ② 任何时候都可以点按钮手动抽一次。iOS 13+ 还需要用户手势触发权限申请，这个按钮同时兼任授权入口。
+    </div>
+  </div>
+
+  <script src="js/mobile-sensor.js"></script>
+</body>
+</html>
