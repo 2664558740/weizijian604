@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  作者：魏子健
+  建立时间：2026-11-18 14:10
+  使用大模型：DeepSeek（DSH 桌面端 AI 助手）
+  功能名称：移动端手势卡片 —— 左右滑动切换 4 道中华美食，阈值 40px，边界提示，0.3s 过渡，300ms 冷却防连滑跳张
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <!-- 移动端必备：视口 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中华美食手势卡片 - 魏子健</title>
+  <link rel="stylesheet" href="css/mobile-gesture.css">
+</head>
+<body>
+
+  <h1 class="wzz_title">中华美食 · 手势卡片</h1>
+  <p class="wzz_sub">左右滑动切换菜品（阈值 40px）</p>
+
+  <!-- 卡片舞台：只接管横向手势，纵向仍可滚动页面 -->
+  <div class="wzz_stage" id="wzz_stage">
+
+    <!-- 第 1 张 -->
+    <div class="wzz_card wzz_active" data-wzz-index="0">
+      <div class="wzz_cardBg wzz_bg1">
+        <span class="wzz_emoji">🍲</span>
+        <h2 class="wzz_dish">重庆火锅</h2>
+        <p class="wzz_desc">牛油红汤翻滚，毛肚七上八下，麻辣鲜香直冲天灵盖。</p>
+      </div>
+    </div>
+
+    <!-- 第 2 张 -->
+    <div class="wzz_card" data-wzz-index="1">
+      <div class="wzz_cardBg wzz_bg2">
+        <span class="wzz_emoji">🍜</span>
+        <h2 class="wzz_dish">兰州拉面</h2>
+        <p class="wzz_desc">一清二白三红四绿五黄，毛细、二细、韭叶任君挑选。</p>
+      </div>
+    </div>
+
+    <!-- 第 3 张 -->
+    <div class="wzz_card" data-wzz-index="2">
+      <div class="wzz_cardBg wzz_bg3">
+        <span class="wzz_emoji">🥟</span>
+        <h2 class="wzz_dish">广式虾饺</h2>
+        <p class="wzz_desc">澄面皮薄如纸，虾仁弹牙，一笼四只刚好一口一个。</p>
+      </div>
+    </div>
+
+    <!-- 第 4 张 -->
+    <div class="wzz_card" data-wzz-index="3">
+      <div class="wzz_cardBg wzz_bg4">
+        <span class="wzz_emoji">🍡</span>
+        <h2 class="wzz_dish">冰糖葫芦</h2>
+        <p class="wzz_desc">山楂裹糖脆而不粘牙，冬天街头的一串红。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 底部：页码 + 提示 -->
+  <p class="wzz_counter" id="wzz_counter">第 <b>1</b>/4 张</p>
+  <p class="wzz_tip" id="wzz_tip">左滑看下一道，右滑回上一道</p>
+
+  <!-- 外部脚本 -->
+  <script src="js/mobile-gesture.js"></script>
+</body>
+</html>

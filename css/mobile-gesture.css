@@ -1,0 +1,126 @@
+/* ============================================================
+   作者：魏子健
+   建立时间：2026-11-18 14:10
+   使用大模型：DeepSeek（DSH 桌面端 AI 助手）
+   功能名称：移动端手势卡片样式（4 道菜、渐变背景、0.3s 过渡）
+   说明：类名统一 wzz_ 前缀，选中态统一 .wzz_active
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  /* 去掉移动端点击灰块 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 24px 16px 40px;
+  font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  background: #f7f5ff;
+  color: #221b33;
+  text-align: center;
+}
+
+.wzz_title {
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+.wzz_sub {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: #6b6478;
+}
+
+/* 舞台：固定高度，卡片叠放 */
+.wzz_stage {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 300px;
+  margin: 0 auto;
+  /* 只接管横向手势，纵向交给浏览器滚动 */
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* 单张卡片：默认隐藏，选中态显示并做 0.3s 过渡 */
+.wzz_card {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.94) translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.wzz_card.wzz_active {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+  pointer-events: auto;
+}
+
+/* 卡片内容块 */
+.wzz_cardBg {
+  height: 100%;
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(34, 27, 51, 0.16);
+}
+
+.wzz_emoji {
+  font-size: 54px;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.wzz_dish {
+  font-size: 24px;
+  margin: 0 0 10px;
+  letter-spacing: 2px;
+}
+
+.wzz_desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  opacity: 0.92;
+  max-width: 300px;
+}
+
+/* 四张卡的渐变背景 */
+.wzz_bg1 { background: linear-gradient(135deg, #e11d48, #f97316); }
+.wzz_bg2 { background: linear-gradient(135deg, #0ea5e9, #10b981); }
+.wzz_bg3 { background: linear-gradient(135deg, #7c3aed, #ec4899); }
+.wzz_bg4 { background: linear-gradient(135deg, #f59e0b, #dc2626); }
+
+/* 页码 */
+.wzz_counter {
+  margin: 18px 0 6px;
+  font-size: 14px;
+  color: #4c1d95;
+}
+
+.wzz_counter b {
+  font-size: 18px;
+}
+
+/* 提示文字 */
+.wzz_tip {
+  margin: 0;
+  font-size: 13px;
+  color: #8b8497;
+  min-height: 20px;
+}
+
+/* 边界提示高亮 */
+.wzz_tip.wzz_warn {
+  color: #d81b52;
+  font-weight: bold;
+}
