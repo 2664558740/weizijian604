@@ -296,3 +296,29 @@ body {
   .wzz_panel { padding: 14px; }
   .wzz_head h1 { font-size: 19px; }
 }
+
+/* ---------- 演示视频 ---------- */
+.wzz_videoBox {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.wzz_videoTitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #4a3a2c;
+  padding-left: 8px;
+  border-left: 3px solid #7c3aed;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.wzz_video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 380px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #000;
+}
